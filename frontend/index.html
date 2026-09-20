@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+  <script type="text/javascript">
+    async function handleClick() {
+      const arg1 = document.getElementById("arg1").value
+      const arg2 = document.getElementById("arg2").value
+      payload = {
+        arg1: Number(arg1),
+        arg2: Number(arg2),
+      }
+
+      // Call the /calc API endpoint
+      const response = await fetch("https://9p5c6fl2kc.execute-api.us-east-2.amazonaws.com/prod/calc", {
+        method: "POST",
+        body: JSON.stringify(payload),
+      })
+
+      // Extract the result from the body
+      const sum = await response.text()
+      document.getElementById("result").value = sum
+    }
+  </script>
+
+  <h1>Request to add values via AWS</h1>
+  Arg1: &nbsp; <input id="arg1" /> &nbsp; Arg2: &nbsp; <input id="arg2" /><br>
+  Result: &nbsp; <input id="result" readonly /><br>
+  <input type="button" value="Add" onClick="JavaScript:handleClick()">
+</body>
+
+</html>
