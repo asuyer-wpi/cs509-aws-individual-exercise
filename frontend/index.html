@@ -18,8 +18,9 @@
       })
 
       // Extract the result from the body
-      const sum = await response.text()
-      document.getElementById("result").value = sum
+      const sumResult = await response.text()
+      const sumObject = JSON.parse(sumResult)
+      document.getElementById("result").value = sumObject.sum
     }
   </script>
 
