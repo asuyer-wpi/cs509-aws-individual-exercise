@@ -12,5 +12,5 @@ test("handler invoked with the add.json API Gateway event returns the sum", asyn
   const result = await handler(addEvent)
 
   expect(result.statusCode).toBe(200)
-  expect(JSON.parse(result.body)).toEqual(25)
+  expect(JSON.parse(result.body)).toEqual({ sum: 25 })
 })

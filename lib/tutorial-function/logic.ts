@@ -3,6 +3,12 @@ export interface AddArgs {
   arg2: number
 }
 
-export function add(args: AddArgs): number {
-  return args.arg1 + args.arg2
+export interface AddResult {
+  sum: number
+}
+
+export function add(args: AddArgs): AddResult {
+  return {
+    sum: args.arg1 + args.arg2
+  }
 }
