@@ -26,13 +26,16 @@ export class ApiStack extends cdk.Stack {
 
     // Declare tutorial-api API gateway
     const api = new apigateway.RestApi(this, "tutorial-api", {
-      restApiName: "TutorialAPI",
+      // restApiName: "TutorialAPI",
 
       // Enable CORS for all methods and all origins on all resources in the API
       defaultCorsPreflightOptions: {
         allowOrigins: apigateway.Cors.ALL_ORIGINS,
         allowMethods: apigateway.Cors.ALL_METHODS,
       },
+
+      // Make URLs end in /api/ instead of /prod/
+      deployOptions: { stageName: "api" },  
     })
 
     // Create /calc resource and assign tutorial-function as the resource

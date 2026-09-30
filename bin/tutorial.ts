@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 import * as cdk from "aws-cdk-lib/core"
-import { ApiStack } from "../lib/api-stack"
-import { FrontendStack } from "../lib/frontend-stack"
+import { TutorialStage } from "../lib/tutorial-stage"
 
 const app = new cdk.App()
-new ApiStack(app, "ApiStack", {})
-new FrontendStack(app, "FrontendStack", {})
+
+// Main stages
+new TutorialStage(app, "Production", {})
+new TutorialStage(app, "Staging", {})
+
+// Developer stages (one per developer)
+new TutorialStage(app, "asuyer", {})
 

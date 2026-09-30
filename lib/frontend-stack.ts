@@ -15,7 +15,7 @@ export class FrontendStack extends cdk.Stack {
     // Create a publicly acessible bucket to host a static website
     const staticWebsiteBucket = new s3.Bucket(this, "bucket", {
       // Bucket name must be globally unique within region
-      bucketName: "cs509-asuyer-tutorial",
+      // bucketName: "cs509-asuyer-tutorial",
 
       // Do NOT block any public access
       publicReadAccess: true,
@@ -45,7 +45,7 @@ export class FrontendStack extends cdk.Stack {
 
     // Private bucket that will contain website files (uploaded manually)
     const bucket = new s3.Bucket(this, "privatebucket", {
-      bucketName: "cs509-asuyer-tutorial2",
+      // bucketName: "cs509-asuyer-tutorial2",
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       enforceSSL: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
