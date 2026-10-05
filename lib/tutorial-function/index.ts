@@ -18,8 +18,32 @@ interface ApiGatewayResult {
 
 export const handler = async (event: ApiGatewayEvent): Promise<ApiGatewayResult> => {
   const args = JSON.parse(event.body ?? "{}")
-  const result = add(args)
 
+  // Make sure both keys are provided
+  let error = ""
+  if (!Object.hasOwn(args, "arg1") && !Object.hasOwn(args, "arg2")) {
+    error = "Missing parameters arg1 and arg2"
+  } else if (!Object.hasOwn(args, "arg1")) {
+    error = "Missing parameter arg1"
+  } else if (!Object.hasOwn(args, "arg2")) {
+    error = "Missing parameter arg2"
+  }
+
+  // Return 400 error if missing keys
+  if (error !== "") {
+    return {
+      isBase64Encoded: false,
+      statusCode: 400,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+      multiValueHeaders: {},
+      body: error,
+    }
+  }
+
+  // Pass args to the adder
+  const result = add(args)
   return {
     isBase64Encoded: false,
     statusCode: 200,
