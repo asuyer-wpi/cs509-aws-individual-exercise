@@ -44,5 +44,24 @@ export class ApiStack extends cdk.Stack {
     // Create /calc resource and assign tutorial-function as the resource
     const calc = api.root.addResource("calc")
     calc.addMethod("POST", new apigateway.LambdaIntegration(tutorialFunction))
+
+
+    const sumFunction = new nodejs.NodejsFunction(this, "Sum", {
+      runtime: lambda.Runtime.NODEJS_22_X,
+
+      // Path to file contianing handler function.
+      entry: path.join(__dirname, "sum-function", "index.ts"),
+
+      // If the exported function in the above file is not named "handler", then uncomment
+      // and update the line below:
+      // handler: "function_name",
+    })
+
+    // /sum-of/{arg1}/and/{arg2}
+    const sumOf = api.root.addResource("sum-of")
+    const arg1 = sumOf.addResource("{arg1}")
+    const and = arg1.addResource("and")
+    const arg2 = and.addResource("{arg2}")
+    arg2.addMethod("POST", new apigateway.LambdaIntegration(sumFunction))
   }
 }

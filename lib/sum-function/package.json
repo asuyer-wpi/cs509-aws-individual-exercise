@@ -1,0 +1,8 @@
+{
+  "name": "tutorial-function",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lambda handler code for TutorialFunction",
+  "dependencies": {},
+  "devDependencies": {}
+}
