@@ -12,6 +12,9 @@ export class ApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
+    // Get the name of this stage
+    const stageName = cdk.Stage.of(this)?.stageName ?? "default"
+
     // Create tutorial-function lambda function
     const tutorialFunction = new nodejs.NodejsFunction(this, "tutorial-function", {
       runtime: lambda.Runtime.NODEJS_22_X,
@@ -26,7 +29,7 @@ export class ApiStack extends cdk.Stack {
 
     // Declare tutorial-api API gateway
     const api = new apigateway.RestApi(this, "tutorial-api", {
-      // restApiName: "TutorialAPI",
+      restApiName: `${stageName.toLowerCase()}-TutorialAPI`,
 
       // Enable CORS for all methods and all origins on all resources in the API
       defaultCorsPreflightOptions: {
