@@ -16,7 +16,7 @@ export class ApiStack extends cdk.Stack {
     const stageName = cdk.Stage.of(this)?.stageName ?? "default"
 
     // Create tutorial-function lambda function
-    const tutorialFunction = new nodejs.NodejsFunction(this, "tutorial-function", {
+    const tutorialFunction = new nodejs.NodejsFunction(this, "TutorialFunction", {
       runtime: lambda.Runtime.NODEJS_22_X,
 
       // Path to file contianing handler function.
