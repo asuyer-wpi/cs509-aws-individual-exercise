@@ -199,7 +199,7 @@ function directory (e.g., `tutorial-function`). In this file, create test inputs
 outputs to the core handler function. The `describeCases` helper function can help with
 this.
 
-```sh
+```ts
 // test/tutorial-function.test.ts
 import { add } from "../lib/tutorial-function/logic"
 import { describeCases } from "./helpers/describeCases"
